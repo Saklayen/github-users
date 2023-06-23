@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.saklayen.githubusers.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/navigate_from_homeFragment_to_followersFragment"
+            app:destination="@id/followersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/followersFragment"
+        android:name="com.saklayen.githubusers.ui.followers.FollowersFragment"
+        android:label="@string/followers_title"
+        tools:layout="@layout/fragment_followers" >
+        <argument
+            android:name="userData"
+            app:argType="com.saklayen.githubusers.domain.model.User" />
+        <action
+            android:id="@+id/navigate_from_followersFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.saklayen.githubusers.ui.profile.ProfileFragment"
+        android:label="Profile">
+        <argument
+            android:name="userData"
+            app:argType="com.saklayen.githubusers.domain.model.Follower" />
+        <action
+            android:id="@+id/navigate_from_profileFragment_to_followersFragment"
+            app:destination="@id/followersFragment" />
+    </fragment>
+</navigation>
