@@ -71,6 +71,6 @@ class ApiModule {
 
     companion object {
         val API_URL: HttpUrl = "https://api.github.com".toHttpUrl()
-        val token = "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"
+        val token = "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"
     }
 }
