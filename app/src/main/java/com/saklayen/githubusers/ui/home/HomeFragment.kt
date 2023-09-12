@@ -2,7 +2,7 @@ package com.saklayen.githubusers.ui.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.saklayen.githubusers.R
 import com.saklayen.githubusers.base.ui.BaseFragment
 import com.saklayen.githubusers.base.utils.launchAndRepeatWithViewLifecycle
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.viewModel = viewModel

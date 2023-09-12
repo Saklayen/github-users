@@ -48,7 +48,7 @@ class ApiModule {
             .readTimeout(300, TimeUnit.SECONDS)
             .writeTimeout(300, TimeUnit.SECONDS)
             .connectTimeout(300, TimeUnit.SECONDS)
-            .addInterceptor(OAuthInterceptor("Bearer", token))
+            //.addInterceptor(OAuthInterceptor("Bearer", token))
             .addNetworkInterceptor(interceptor)
             .build()
 

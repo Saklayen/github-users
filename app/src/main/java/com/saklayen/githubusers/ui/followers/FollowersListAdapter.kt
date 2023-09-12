@@ -1,4 +1,4 @@
-package com.saklayen.githubusers.ui.home
+package com.saklayen.githubusers.ui.followers
 
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
@@ -9,7 +9,6 @@ import com.saklayen.githubusers.base.utils.layoutInflater
 import com.saklayen.githubusers.clearDecorations
 import com.saklayen.githubusers.databinding.ItemRowUserBinding
 import com.saklayen.githubusers.domain.model.Follower
-import com.saklayen.githubusers.ui.followers.FollowersViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
