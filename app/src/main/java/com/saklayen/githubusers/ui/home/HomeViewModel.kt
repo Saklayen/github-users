@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) :
     ViewModel() {
 
     val sf = MutableSharedFlow<String>()
-    val stF = sf.asS
+
 
     private val _navigateToFollowers = Channel<User>(Channel.CONFLATED)
     val navigateToFollowers = _navigateToFollowers.receiveAsFlow()
@@ -67,11 +67,7 @@ class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) :
 
     init {
 
-        viewModelScope.launch {
-            stF.collect {
-                Timber.d("stF = $it")
-            }
-        }
+
         viewModelScope.launch {
             for (i in 1 .. 100){
                 delay(5000)
