@@ -10,7 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -23,8 +27,16 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) :
     ViewModel() {
 
+    val sf = MutableSharedFlow<String>()
+    val stF = sf.asS
+
     private val _navigateToFollowers = Channel<User>(Channel.CONFLATED)
     val navigateToFollowers = _navigateToFollowers.receiveAsFlow()
+
+    private val _changeLanguage = Channel<Unit>(Channel.CONFLATED)
+    val changeLanguage = _changeLanguage.receiveAsFlow()
+
+    val dataList = MutableStateFlow(listOf("x", "y"))
 
     val queryTextListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextChange(newText: String): Boolean {
@@ -54,6 +66,18 @@ class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) :
     )
 
     init {
+
+        viewModelScope.launch {
+            stF.collect {
+                Timber.d("stF = $it")
+            }
+        }
+        viewModelScope.launch {
+            for (i in 1 .. 100){
+                delay(5000)
+                dataList.value = listOf("$i-x", "$i-y")
+            }
+        }
         viewModelScope.launch {
             userInfo.collect {
                 Timber.e("Response: ${it?.status}")
@@ -66,6 +90,10 @@ class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) :
     fun fetchUser(name: String) {
         Timber.e("fetchUser $name")
         fetchUser.tryEmit(name)
+    }
+
+    fun changeLanguage(){
+        _changeLanguage.trySend(Unit)
     }
 
     fun navigateToFollowers() {

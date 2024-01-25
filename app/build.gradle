@@ -86,4 +86,11 @@ dependencies {
 
     implementation "com.facebook.stetho:stetho:1.6.0"
     implementation "com.facebook.stetho:stetho-okhttp3:1.6.0"
+
+    // Replace bundled strings dynamically
+    implementation 'dev.b3nedikt.restring:restring:5.2.2'
+// Intercept view inflation
+    implementation 'dev.b3nedikt.viewpump:viewpump:4.0.12'
+// Allows to update the text of views at runtime without recreating the activity
+    implementation 'dev.b3nedikt.reword:reword:4.0.4'
 }

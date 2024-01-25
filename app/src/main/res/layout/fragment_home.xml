@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="com.saklayen.githubusers.domain.Result"/>
         <variable
@@ -9,13 +9,13 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -27,7 +27,22 @@
                 app:layout_collapseMode="pin"
                 app:titleTextColor="@color/white"
                 android:textSize="16sp"
-                app:title="@string/app_name" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{()-> viewModel.changeLanguage()}"
+                app:title="@string/app_name">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language"
+                        android:onClick="@{()-> viewModel.changeLanguage()}"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </com.google.android.material.appbar.MaterialToolbar>
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="20dp"
@@ -229,6 +244,7 @@
                     layout="@layout/empty_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    app:dummyData = "@{viewModel.dataList}"
                     app:result="@{(Result) viewModel.userInfo}" />
 
 

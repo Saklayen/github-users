@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Github Users</string>
+    <string name="app_name">গিটহাব ইউসার </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="no_info_available">No info available</string>
+    <string name="no_info_available">কোনো তথ্য পাওয়া যায়নি</string>
     <string name="followers_title">Followers</string>
     <string name="following_title">Following</string>
     <string name="description">Description</string>
     <string name="change_language">Change Language</string>
-    <string name="language">Language</string>
+    <string name="language">ভাষা </string>
 </resources>

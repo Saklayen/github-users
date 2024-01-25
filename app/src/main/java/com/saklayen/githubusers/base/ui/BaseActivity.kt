@@ -4,9 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.ViewPumpAppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import dev.b3nedikt.restring.Restring
+import io.github.inflationx.viewpump.ViewPump
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 import javax.inject.Inject
@@ -25,6 +29,18 @@ abstract class BaseActivity<T : ViewDataBinding> constructor(@LayoutRes private 
 
     override fun attachBaseContext(context: Context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(context))
+    }
+
+    private val appCompatDelegate: AppCompatDelegate by lazy {
+        ViewPumpAppCompatDelegate(
+            baseDelegate = super.getDelegate(),
+            baseContext = this,
+            wrapContext = Restring::wrapContext
+        )
+    }
+
+    override fun getDelegate(): AppCompatDelegate {
+        return appCompatDelegate
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

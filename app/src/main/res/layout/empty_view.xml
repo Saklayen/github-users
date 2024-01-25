@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -12,6 +13,9 @@
         <variable
             name="result"
             type="Result" />
+        <variable
+            name="dummyData"
+            type="java.util.List&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,6 +48,7 @@
             app:lottie_loop="true" />
 
         <TextView
+            android:id="@+id/pok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -53,6 +58,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lottie_view" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/testRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/pok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_cricket_score_details"
+            tools:itemCount="1"
+            bindScrollPosition="@{0}"
+            bindDetailedScore="@{dummyData}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
